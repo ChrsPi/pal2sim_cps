@@ -2,10 +2,9 @@ import random
 
 import numpy as np
 
+from classificators.inception_time_classifier import InceptionTimeWindowClassifier
 from utils.config import Config
 from data_handler import DataHandler
-from classificators.dummy_classifier import DummyClassifier
-from classificators.random_forest_classifier import RandomForestClassifierSK
 from utils.utils import calculate_mcc_multilabel, plot_per_class_confusion
 
 if __name__ == '__main__':
@@ -45,8 +44,10 @@ if __name__ == '__main__':
 
         try:
 
-            #model = DummyClassifier(target_vals)
-            model = RandomForestClassifierSK(target_vals)
+            model = InceptionTimeWindowClassifier(
+                classes=target_vals,
+                sensor_names=config.data.sensor_cols,
+            )
             ### INSERT YOUR MODEL HERE ###
             # model = MyAwesomeModel(...)
 
